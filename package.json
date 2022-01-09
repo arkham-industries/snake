@@ -14,5 +14,8 @@
   "bugs": {
     "url": "https://github.com/arkham-industries/snake/issues"
   },
-  "homepage": "https://github.com/arkham-industries/snake#readme"
+  "homepage": "https://github.com/arkham-industries/snake#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
 }
