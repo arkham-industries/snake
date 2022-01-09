@@ -1,0 +1,9 @@
+.game-grid {
+    background-color: blueviolet;
+}
+
+.game-grid td {
+    height: 10px;
+    width: 10px;
+    border: 1px #000 dashed;
+}
