@@ -1,8 +1,15 @@
-const timer = 10;
+import { Grid } from './grid.js';
+
 
 export class App {
+    
+    constructor(appEl) {
+        this.appEl = appEl;
+    }
+
     start() {
-        console.log('game started!');
-        timer +=1;
+        const grid = new Grid(this.appEl, 20, 20);
+        console.log('game started!', grid);
+        grid.render();
     }
 }
