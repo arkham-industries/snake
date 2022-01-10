@@ -7,16 +7,29 @@ export class App {
         this.appEl = appEl;
     }
 
-    start() {
+    start(speed = 1) {
         const worldHeight = 20;
         const worldWidth = 20;
+
         const grid = new Grid(this.appEl, worldHeight, worldWidth);
         console.log('game started!', grid);
         grid.render();
 
         const snakeBodySegments = this.getInitialSnakeBodySegements(worldHeight, worldWidth);
-        const snake = new Snake(snakeBodySegments);
-        console.log('got a snake!', snake);
+        this.snake = new Snake(snakeBodySegments);
+
+        // update the screen
+        window.setInterval(() => {
+            this.update();
+        }, 1/speed * 1000);
+    }
+
+    /**
+     * Updates the game state on the screen.
+     */
+    update() {
+        console.log('updating the game!', this.snake);
+        // this.snake
     }
 
     getInitialSnakeBodySegements(worldHeight, worldWidth){ //spawns a length 2 snake at random point
