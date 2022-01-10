@@ -18,6 +18,9 @@ export class App {
         const snakeBodySegments = this.getInitialSnakeBodySegements(worldHeight, worldWidth);
         this.snake = new Snake(snakeBodySegments);
 
+        // render inital position of screen
+        this.grid.colorCells(this.snake.bodySegments, '#f00');
+
         // update the screen
         window.setInterval(() => {
             this.update();
@@ -29,6 +32,29 @@ export class App {
      */
     update() {
         console.log('updating the game!', this.snake);
+        this.grid.reset();
+        this.snake.move([1,0]);
+
+        //check if snake is moving out of bounds
+        /*if((body[0] + direction).x > worldWidth
+        || (body[0] + direction).x < 0
+        || (body[0] + direction).y >worldHeight
+        || (body[0] + direction).y < 0){
+    
+            main.gameOver();
+            return
+        }*/
+    
+        //check if new location is part of body
+        //gameover
+    
+        //check if apple is on target point
+        /*if((body[0] + direction).comtainsApple){
+            Eat();
+            return;
+        }*/
+  
+        // rendering the snake
         this.grid.colorCells(this.snake.bodySegments, '#f00');
     }
 

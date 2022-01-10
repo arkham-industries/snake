@@ -4,9 +4,27 @@ export class Snake {
       this.bodySegments = initialBodySegmentArray;
     }
 
-    render() {
+    /**
+     * Moves the snake forward.
+     * @param {*} delta x,y movement values, e.g. [0,1] moves the snake up one in the y direction
+     */
+    move(delta){
 
+      const xDelta = delta[0];  // -1,0,1
+      const yDelta = delta[1];  // -1,0,1
+
+      this.bodySegments.pop(); //removes tail
+      
+      const oldHead = this.bodySegments[0];
+      const newHead = [
+        oldHead[0] + xDelta,  
+        oldHead[1] + yDelta
+      ];
+
+      this.bodySegments.unshift(newHead); //adds new head in direction of movement from old head point
+      console.log('moving snake', JSON.stringify(this.bodySegments));
     }
+
 }
 
 /*class point {
@@ -23,35 +41,7 @@ export class Snake {
 
 
 
-  // function Move(delta){ //delta is a point that we want out head to move to
 
-  //   const xDelta = delta[0];
-  //   const yDelta = delta[1];
-  //     //check if snake is moving out of bounds
-  //   /*if((body[0] + direction).x > worldWidth
-  //   || (body[0] + direction).x < 0
-  //   || (body[0] + direction).y >worldHeight
-  //   || (body[0] + direction).y < 0){
-
-  //       main.gameOver();
-  //       return
-  //   }*/
-
-  //   //check if new location is part of body
-  //   //gameover
-
-  //     //check if apple is on target point
-  //   /*if((body[0] + direction).comtainsApple){
-  //       Eat();
-  //       return;
-  //   }*/
-
-  //   body.pop(); //removes tail
-
-  //   let newHead = [body[0][0] + xDelta,
-  //                       body[0][1] + yDelta];
-  //   body.unshift(newHead); //adds new head in direction of movement from old head point
-  // }
 
 
   // function Eat(point apple){

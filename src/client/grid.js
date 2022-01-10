@@ -32,5 +32,15 @@ export class Grid {
             tableCell.style.backgroundColor = color;
         });
     }
+
+    reset() {
+        for(let y=0; y<this.height; y++) {
+            for(let x=0; x<this.width; x++) {
+                const row = this.table.children.item(y);
+                const cell = row.children.item(x);
+                cell.style.backgroundColor = 'transparent';
+            }
+        }
+    }
 }
 
