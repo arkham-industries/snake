@@ -1,6 +1,6 @@
 export class Grid {
 
-    constructor(appEl, width, height) {
+    constructor(appEl, height, width) {
         this.appEl = appEl;
         this.width = width;
         this.height = height;
