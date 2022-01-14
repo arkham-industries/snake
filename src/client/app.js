@@ -9,7 +9,7 @@ export class App {
         this.appEl = appEl;
     }
 
-    start(speed = 1) {
+    start(speed = 2) {
         const worldHeight = 20;
         const worldWidth = 20;
 
@@ -24,7 +24,7 @@ export class App {
         this.grid.colorCells(this.snake.bodySegments, '#f00');
 
         // update the screen
-        window.setInterval(() => {
+        this.updateInterval = window.setInterval(() => {
             this.update();
         }, 1/speed * 1000);
     }
@@ -43,8 +43,8 @@ export class App {
         || (this.snake.head[0]) < 0
         || (this.snake.head[1]) > this.grid.height-1
         || (this.snake.head[1]) < 0){
-    
-            this.gameOver = true;
+            this.endGame();
+            return;
         }
     
         //check if new location is part of body
@@ -56,14 +56,10 @@ export class App {
             return;
         }*/
   
-        if (!this.gameOver) {
-            // render the game state
-            this.grid.reset();
-            this.grid.colorCells(this.snake.bodySegments, '#f00');
-        } else {
-            // show the user a sad face
-            console.log("Game over man");
-        }
+        // render the game state
+        this.grid.reset();
+        this.grid.colorCells(this.snake.bodySegments, '#f00');
+
 
     }
 
@@ -88,5 +84,11 @@ export class App {
         }
     
         return bodySegments;
+    }
+
+    endGame(){
+        this.gameOver = true;
+        console.log("Game over man");
+        window.clearInterval(this.updateInterval);
     }
 }
