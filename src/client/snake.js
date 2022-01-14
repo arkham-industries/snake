@@ -1,7 +1,11 @@
 export class Snake {
 
+    head = null;  // reference to the head of the snake
+    bodySegments = []; // all body segements of the snake as [x,y]s
+    
     constructor(initialBodySegmentArray) {
       this.bodySegments = initialBodySegmentArray;
+      this.head = this.bodySegments[0];
     }
 
     /**
@@ -10,8 +14,8 @@ export class Snake {
      */
     move(delta){
 
-      const xDelta = delta[0];  // -1,0,1
-      const yDelta = delta[1];  // -1,0,1
+      const xDelta = delta[0];  // values are -1,0,1
+      const yDelta = delta[1];  // values are -1,0,1
 
       this.bodySegments.pop(); //removes tail
       
@@ -22,6 +26,7 @@ export class Snake {
       ];
 
       this.bodySegments.unshift(newHead); //adds new head in direction of movement from old head point
+      this.head = newHead;
       console.log('moving snake', JSON.stringify(this.bodySegments));
     }
 
