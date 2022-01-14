@@ -39,14 +39,13 @@ export class App {
         this.snake.move([1,0]);
 
         //check if snake is moving out of bounds
-        /*if((body[0] + direction).x > worldWidth
-        || (body[0] + direction).x < 0
-        || (body[0] + direction).y >worldHeight
-        || (body[0] + direction).y < 0){
+        if((this.snake.head[0]) > this.grid.width-1
+        || (this.snake.head[0]) < 0
+        || (this.snake.head[1]) > this.grid.height-1
+        || (this.snake.head[1]) < 0){
     
-            main.gameOver();
-            return
-        }*/
+            this.gameOver = true;
+        }
     
         //check if new location is part of body
         //gameover
@@ -57,12 +56,13 @@ export class App {
             return;
         }*/
   
-        if (!gameOver) {
+        if (!this.gameOver) {
             // render the game state
             this.grid.reset();
             this.grid.colorCells(this.snake.bodySegments, '#f00');
         } else {
             // show the user a sad face
+            console.log("Game over man");
         }
 
     }

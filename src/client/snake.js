@@ -1,6 +1,6 @@
 export class Snake {
 
-    head = null;  // reference to the head of the snake
+    head = null;  // reference to the head of the snake, is a [x,y] coordinate
     bodySegments = []; // all body segements of the snake as [x,y]s
     
     constructor(initialBodySegmentArray) {
