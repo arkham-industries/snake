@@ -16,7 +16,7 @@ export class App {
         this.appEl = appEl;
     }
 
-    start(speed = 2) {
+    start(speed = 5) {
         const worldHeight = 20;
         const worldWidth = 20;
 
@@ -69,8 +69,7 @@ export class App {
         // render the game state
         this.grid.reset();
         this.grid.colorCells(this.snake.bodySegments, '#f00');
-
-
+        this.grid.colorCells([this.snake.head], '#0f0');
     }
 
     listenForKeyboard(){
