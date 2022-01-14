@@ -2,20 +2,18 @@ export class Snake {
 
     head = null;  // reference to the head of the snake, is a [x,y] coordinate
     bodySegments = []; // all body segements of the snake as [x,y]s
-    
-    constructor(initialBodySegmentArray) {
+    facingDirection = null; //x,y movement values, e.g. [0,1] moves the snake up one in the y direction
+
+    constructor(initialBodySegmentArray, initialFacingDirection) {
       this.bodySegments = initialBodySegmentArray;
       this.head = this.bodySegments[0];
+      this.facingDirection = initialFacingDirection;
     }
 
-    /**
-     * Moves the snake forward.
-     * @param {*} delta x,y movement values, e.g. [0,1] moves the snake up one in the y direction
-     */
-    move(delta){
+    move(){
 
-      const xDelta = delta[0];  // values are -1,0,1
-      const yDelta = delta[1];  // values are -1,0,1
+      const xDelta = this.facingDirection[0];  // values are -1,0,1
+      const yDelta = this.facingDirection[1];  // values are -1,0,1
 
       this.bodySegments.pop(); //removes tail
       

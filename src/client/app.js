@@ -1,6 +1,13 @@
 import { Grid } from './grid.js';
 import { Snake } from './snake.js';
 
+const directions = {
+    up: [-1, 0],
+    down: [1,0],
+    left: [0,-1],
+    right: [0,1]
+}
+
 export class App {
     
     gameOver = false;
@@ -18,7 +25,7 @@ export class App {
         this.grid.render();
 
         const snakeBodySegments = this.getInitialSnakeBodySegements(worldHeight, worldWidth);
-        this.snake = new Snake(snakeBodySegments);
+        this.snake = new Snake(snakeBodySegments, directions.down);
 
         // render inital position of screen
         this.grid.colorCells(this.snake.bodySegments, '#f00');
@@ -27,6 +34,8 @@ export class App {
         this.updateInterval = window.setInterval(() => {
             this.update();
         }, 1/speed * 1000);
+
+        this.listenForKeyboard();
     }
 
     /**
@@ -35,8 +44,9 @@ export class App {
     update() {
         console.log('updating the game!', this.snake);
 
+        
         // updating the game state
-        this.snake.move([1,0]);
+        this.snake.move();
 
         //check if snake is moving out of bounds
         if((this.snake.head[0]) > this.grid.width-1
@@ -61,6 +71,21 @@ export class App {
         this.grid.colorCells(this.snake.bodySegments, '#f00');
 
 
+    }
+
+    listenForKeyboard(){
+        document.addEventListener('keydown', (event)=>{
+            console.log(event);
+            if(event.code == 'ArrowUp'){
+                this.snake.facingDirection = directions.up;
+            } else if(event.code == 'ArrowDown'){
+                this.snake.facingDirection = directions.down;
+            } else if(event.code == 'ArrowLeft'){
+                this.snake.facingDirection = directions.left;
+            } else if(event.code == 'ArrowRight'){
+                this.snake.facingDirection = directions.right;
+            }
+        })
     }
 
     getInitialSnakeBodySegements(worldHeight, worldWidth){ //spawns a length 2 snake at random point
