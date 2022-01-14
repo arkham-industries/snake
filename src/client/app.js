@@ -3,6 +3,8 @@ import { Snake } from './snake.js';
 
 export class App {
     
+    gameOver = false;
+
     constructor(appEl) {
         this.appEl = appEl;
     }
@@ -32,7 +34,8 @@ export class App {
      */
     update() {
         console.log('updating the game!', this.snake);
-        this.grid.reset();
+
+        // updating the game state
         this.snake.move([1,0]);
 
         //check if snake is moving out of bounds
@@ -54,8 +57,14 @@ export class App {
             return;
         }*/
   
-        // rendering the snake
-        this.grid.colorCells(this.snake.bodySegments, '#f00');
+        if (!gameOver) {
+            // render the game state
+            this.grid.reset();
+            this.grid.colorCells(this.snake.bodySegments, '#f00');
+        } else {
+            // show the user a sad face
+        }
+
     }
 
     getInitialSnakeBodySegements(worldHeight, worldWidth){ //spawns a length 2 snake at random point
